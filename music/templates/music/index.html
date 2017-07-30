@@ -5,6 +5,16 @@
         <ol>
             {% for album in all_albums %}
             <li><a href="{%url 'music:detail' album.id%}">{{album.album_title}}</a></li>
+            <form action="{% url 'music:album-delete' album.id%}" method="post" style="dispalay:inline">
+                {% csrf_token %}
+                <input type="hidden" name="album_id" value="{{ablum.id}}"/>
+                <button class="btn btn-danger btn-small" type="submit">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+
+
+
+            </form>
             {% endfor %}
         </ol>
     {% else %}
